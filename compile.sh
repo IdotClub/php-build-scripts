@@ -17,7 +17,7 @@ LIBZIP_VERSION="1.10.1"
 SQLITE3_VERSION="3450200" #3.45.2
 LIBDEFLATE_VERSION="2335c047e91cac6fd04cb0fd2769380395149f15" #1.22 - see above note about "v" prefixes
 
-EXT_PMMPTHREAD_VERSION="6.1.0"
+EXT_PMMPTHREAD_VERSION="63335fccd717987928f524b892cd4ee4c9f0a708"
 EXT_YAML_VERSION="2.2.4"
 EXT_LEVELDB_VERSION="317fdcd8415e1566fc2835ce2bdb8e19b890f9f3" #release not tagged
 EXT_CHUNKUTILS2_VERSION="0.3.5"
@@ -1039,7 +1039,7 @@ function get_pecl_extension {
 cd "$BUILD_DIR/php"
 write_out "PHP" "Downloading additional extensions..."
 
-get_github_extension "pmmpthread" "$EXT_PMMPTHREAD_VERSION" "pmmp" "ext-pmmpthread"
+get_github_extension "pmmpthread" "$EXT_PMMPTHREAD_VERSION" "AkmalFairuz" "ext-pmmpthread"
 
 
 get_github_extension "yaml" "$EXT_YAML_VERSION" "php" "pecl-file_formats-yaml"

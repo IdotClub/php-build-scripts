@@ -28,7 +28,7 @@ set LEVELDB_MCPE_VER=1c7564468b41610da4f498430e795ca4de0931ff
 REM 1.22 - see above note about "v" prefixes
 set LIBDEFLATE_VER=2335c047e91cac6fd04cb0fd2769380395149f15
 
-set PHP_PMMPTHREAD_VER=6.1.0
+set PHP_PMMPTHREAD_VER=63335fccd717987928f524b892cd4ee4c9f0a708
 set PHP_YAML_VER=2.2.4
 set PHP_CHUNKUTILS2_VER=0.3.5
 set PHP_IGBINARY_VER=3.2.16
@@ -229,7 +229,7 @@ cd /D ..
 call :pm-echo "Getting additional PHP extensions..."
 cd /D php-src\ext
 
-call :get-extension-zip-from-github "pmmpthread"            "%PHP_PMMPTHREAD_VER%"            "pmmp"     "ext-pmmpthread"          || exit 1
+call :get-extension-zip-from-github "pmmpthread"            "%PHP_PMMPTHREAD_VER%"            "AkmalFairuz"     "ext-pmmpthread"          || exit 1
 call :get-extension-zip-from-github "yaml"                  "%PHP_YAML_VER%"                  "php"      "pecl-file_formats-yaml"  || exit 1
 call :get-extension-zip-from-github "chunkutils2"           "%PHP_CHUNKUTILS2_VER%"           "pmmp"     "ext-chunkutils2"         || exit 1
 call :get-extension-zip-from-github "igbinary"              "%PHP_IGBINARY_VER%"              "igbinary" "igbinary"                || exit 1
