@@ -136,7 +136,7 @@ set DEPS_DIR_NAME=deps
 set "DEPS_DIR=%SOURCES_PATH%\%DEPS_DIR_NAME%"
 
 call :pm-echo "Downloading PHP dependencies into %DEPS_DIR%..."
-call bin\phpsdk_deps.bat -u -t %VC_VER% -b %PHP_MAJOR_VER% -a %ARCH% -f -d %DEPS_DIR_NAME% >>"%log_file%" 2>&1 || exit 1
+call bin\phpsdk_deps.bat -u -t %VC_VER% -b %PHP_MAJOR_VER% -s staging -a %ARCH% -f -d %DEPS_DIR_NAME% >>"%log_file%" 2>&1 || exit 1
 
 
 call :pm-echo "Getting additional dependencies..."
