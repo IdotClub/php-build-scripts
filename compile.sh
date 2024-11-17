@@ -1197,7 +1197,7 @@ $HAVE_MYSQLI \
 --enable-xxhash \
 --enable-arraydebug \
 # --enable-encoding \
-$HAVE_VALGRIND \
+# $HAVE_VALGRIND \
 $CONFIGURE_FLAGS >> "$DIR/install.log" 2>&1
 write_compile
 if [ "$COMPILE_FOR_ANDROID" == "yes" ]; then
