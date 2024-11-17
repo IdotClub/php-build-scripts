@@ -16,7 +16,7 @@ if "%PHP_DEBUG_BUILD%"=="" (
 	set PHP_DEBUG_BUILD=0
 )
 set MSBUILD_CONFIGURATION=RelWithDebInfo
-set PHP_JIT_ENABLE_ARG=off
+set PHP_JIT_ENABLE_ARG=on
 
 REM NOTE: Tags with "v" prefixes behave weirdly in the GitHub API. They'll be stripped in some places but not others.
 REM Use commit hashes to avoid this.
