@@ -274,7 +274,7 @@ call configure^
  --enable-chunkutils2=shared^
  --enable-com-dotnet^
  --enable-ctype^
- --enable-encoding=shared^
+ REM --enable-encoding=shared^
  --enable-fileinfo=shared^
  --enable-filter^
  --enable-hash^
