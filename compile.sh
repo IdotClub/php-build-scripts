@@ -16,6 +16,7 @@ OPENSSL_VERSION="3.4.0"
 LIBZIP_VERSION="1.10.1"
 SQLITE3_VERSION="3450200" #3.45.2
 LIBDEFLATE_VERSION="2335c047e91cac6fd04cb0fd2769380395149f15" #1.22 - see above note about "v" prefixes
+LIBZSTD_VER="1.5.5"
 
 EXT_PMMPTHREAD_VERSION="0f8e2c7f0a2f7fa34aae75c7fbe25ad4686e5ee6"
 EXT_YAML_VERSION="2.2.4"
@@ -986,6 +987,49 @@ function build_libdeflate {
 	write_done
 }
 
+function build_zstd {
+	if [ "$LDORIGIN_MODIFY" != "no" ]; then
+		LDFLAGS="-Wl,-rpath='\$ORIGIN/../lib' -Wl,-rpath-link='\$ORIGIN/../lib'";
+	fi
+
+	write_library zstd "$LIBZSTD_VER"
+	local zstd_dir="./zstd-$LIBZSTD_VER"
+
+	if cant_use_cache "$zstd_dir"; then
+		rm -rf "$zstd_dir"
+		write_download
+		download_file "https://github.com/facebook/zstd/archive/v$LIBZSTD_VER.tar.gz" "zstd" | tar -zx >> "$DIR/install.log" 2>&1
+		echo -n " checking..."
+		pushd $zstd_dir/build/cmake >> "$DIR/install.log" 2>&1
+	  if [ "$DO_STATIC" != "yes" ]; then
+		  local EXTRA_FLAGS="-DBUILD_SHARED_LIBS=ON"
+	  else
+		  local EXTRA_FLAGS=""
+	  fi
+		cmake . \
+			-DCMAKE_INSTALL_PREFIX="$INSTALL_DIR" \
+			-DCMAKE_PREFIX_PATH="$INSTALL_DIR" \
+			-DCMAKE_INSTALL_LIBDIR=lib \
+			-DCMAKE_BUILD_TYPE=Release \
+			$CMAKE_GLOBAL_EXTRA_FLAGS \
+			$EXTRA_FLAGS \
+			>> "$DIR/install.log" 2>&1
+		write_compile
+		make -j $THREADS >> "$DIR/install.log" 2>&1 && mark_cache
+	else
+		write_caching
+		pushd "$zstd_dir"
+	fi
+	write_install
+	make install >> "$DIR/install.log" 2>&1
+	popd >> "$DIR/install.log" 2>&1
+	write_done
+
+	if [ "$LDORIGIN_MODIFY" != "no" ]; then
+		LDFLAGS="-Wl,-rpath='\$\$ORIGIN/../lib' -Wl,-rpath-link='\$\$ORIGIN/../lib'";
+	fi
+}
+
 cd "$LIB_BUILD_DIR"
 
 build_zlib
@@ -1008,6 +1052,7 @@ build_libxml2
 build_libzip
 build_sqlite3
 build_libdeflate
+build_zstd
 
 # PECL libraries
 
