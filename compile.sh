@@ -17,7 +17,7 @@ LIBZIP_VERSION="1.10.1"
 SQLITE3_VERSION="3450200" #3.45.2
 LIBDEFLATE_VERSION="2335c047e91cac6fd04cb0fd2769380395149f15" #1.22 - see above note about "v" prefixes
 
-EXT_PMMPTHREAD_VERSION="c740635536b82ffce5bfa084d812234934d752d5"
+EXT_PMMPTHREAD_VERSION="0f8e2c7f0a2f7fa34aae75c7fbe25ad4686e5ee6"
 EXT_YAML_VERSION="2.2.4"
 EXT_LEVELDB_VERSION="317fdcd8415e1566fc2835ce2bdb8e19b890f9f3" #release not tagged
 EXT_CHUNKUTILS2_VERSION="0.3.5"
@@ -1196,6 +1196,7 @@ $HAVE_MYSQLI \
 --enable-recursionguard \
 --enable-xxhash \
 --enable-arraydebug \
+--with-capstone \
 # --enable-encoding \
 # $HAVE_VALGRIND \
 $CONFIGURE_FLAGS >> "$DIR/install.log" 2>&1
