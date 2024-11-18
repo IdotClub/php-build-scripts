@@ -30,6 +30,7 @@ EXT_MORTON_VERSION="0.1.2"
 EXT_XXHASH_VERSION="0.2.0"
 EXT_ARRAYDEBUG_VERSION="0.2.0"
 EXT_ENCODING_VERSION="cb6bb97556f6fc98fc531e1c7daba92ef1cf3ce5"
+EXT_ZSTD_VERSION="0.14.0"
 
 function write_out {
 	echo "[$1] $2"
@@ -1071,6 +1072,8 @@ get_github_extension "arraydebug" "$EXT_ARRAYDEBUG_VERSION" "pmmp" "ext-arraydeb
 
 get_github_extension "encoding" "$EXT_ENCODING_VERSION" "AkmalFairuz" "ext-encoding"
 
+get_github_extension "zstd" "$EXT_ZSTD_VERSION" "kjdev" "php-ext-zstd"
+
 write_library "PHP" "$PHP_VERSION"
 
 write_configure
@@ -1197,6 +1200,7 @@ $HAVE_MYSQLI \
 --enable-xxhash \
 --enable-arraydebug \
 --enable-encoding \
+--enable-zstd \
 # --with-capstone \
 # $HAVE_VALGRIND \
 $CONFIGURE_FLAGS >> "$DIR/install.log" 2>&1
