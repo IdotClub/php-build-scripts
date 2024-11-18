@@ -42,7 +42,7 @@ set PHP_LIBDEFLATE_VER=0.2.1
 set PHP_XXHASH_VER=0.2.0
 set PHP_XDEBUG_VER=207b9576ee5fb18c57df700ab6c412260b9e54f3
 set PHP_ARRAYDEBUG_VER=0.2.0
-set PHP_ENCODING_VER=0.3.0
+set PHP_ENCODING_VER=cb6bb97556f6fc98fc531e1c7daba92ef1cf3ce5
 
 set script_path=%~dp0
 set log_file=%script_path%compile.log
@@ -240,7 +240,7 @@ call :get-extension-zip-from-github "libdeflate"            "%PHP_LIBDEFLATE_VER
 call :get-extension-zip-from-github "xxhash"                "%PHP_XXHASH_VER%"                "pmmp"     "ext-xxhash"              || exit 1
 call :get-extension-zip-from-github "xdebug"                "%PHP_XDEBUG_VER%"                "xdebug"   "xdebug"                  || exit 1
 call :get-extension-zip-from-github "arraydebug"            "%PHP_ARRAYDEBUG_VER%"            "pmmp"     "ext-arraydebug"          || exit 1
-REM call :get-extension-zip-from-github "encoding"              "%PHP_ENCODING_VER%"              "pmmp"     "ext-encoding"            || exit 1
+call :get-extension-zip-from-github "encoding"              "%PHP_ENCODING_VER%"              "AkmalFairuz"     "ext-encoding"            || exit 1
 
 call :pm-echo " - crypto: downloading %PHP_CRYPTO_VER%..."
 git clone https://github.com/bukka/php-crypto.git crypto >>"%log_file%" 2>&1 || exit 1
@@ -274,7 +274,7 @@ call configure^
  --enable-chunkutils2=shared^
  --enable-com-dotnet^
  --enable-ctype^
- REM --enable-encoding=shared^
+ --enable-encoding=shared^
  --enable-fileinfo=shared^
  --enable-filter^
  --enable-hash^
