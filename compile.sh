@@ -1202,6 +1202,7 @@ $HAS_LIBJPEG \
 $HAS_GD \
 --with-leveldb="$INSTALL_DIR" \
 --without-readline \
+--with-libzstd \
 $HAS_DEBUG \
 --enable-chunkutils2 \
 --enable-morton \
@@ -1400,6 +1401,7 @@ if [ "$DO_CLEANUP" == "yes" ]; then
 	rm -f "$INSTALL_DIR/bin/curl-config"* >> "$DIR/install.log" 2>&1
 	rm -f "$INSTALL_DIR/bin/c_rehash"* >> "$DIR/install.log" 2>&1
 	rm -f "$INSTALL_DIR/bin/openssl"* >> "$DIR/install.log" 2>&1
+	rm -f "$INSTALL_DIR/bin/zstd"* >> "$DIR/install.log" 2>&1
 	rm -r -f "$INSTALL_DIR/man" >> "$DIR/install.log" 2>&1
 	rm -r -f "$INSTALL_DIR/share/man" >> "$DIR/install.log" 2>&1
 	rm -r -f "$INSTALL_DIR/php" >> "$DIR/install.log" 2>&1
