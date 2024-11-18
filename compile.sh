@@ -1196,8 +1196,8 @@ $HAVE_MYSQLI \
 --enable-recursionguard \
 --enable-xxhash \
 --enable-arraydebug \
-# --with-capstone \
 --enable-encoding \
+# --with-capstone \
 # $HAVE_VALGRIND \
 $CONFIGURE_FLAGS >> "$DIR/install.log" 2>&1
 write_compile
