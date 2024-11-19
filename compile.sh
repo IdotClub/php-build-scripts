@@ -431,8 +431,10 @@ fi
 [ -z "$mtune" ] && mtune=native;
 [ -z "$CFLAGS" ] && CFLAGS="";
 
-if [ "$DO_STATIC" == "no" ]; then
-	[ -z "$LDFLAGS" ] && LDFLAGS="-Wl,-rpath='\$\$ORIGIN/../lib' -Wl,-rpath-link='\$\$ORIGIN/../lib'";
+LDORIGIN_MODIFY="no"
+if [ "$DO_STATIC" == "no" ] && [ -z "$LDFLAGS" ]; then
+	LDFLAGS="-Wl,-rpath='\$\$ORIGIN/../lib' -Wl,-rpath-link='\$\$ORIGIN/../lib'";
+	LDORIGIN_MODIFY="yes"
 fi
 
 [ -z "$CONFIGURE_FLAGS" ] && CONFIGURE_FLAGS="";
@@ -724,6 +726,10 @@ function build_yaml {
 }
 
 function build_leveldb {
+	if [ "$LDORIGIN_MODIFY" != "no" ]; then
+		LDFLAGS="-Wl,-rpath='\$ORIGIN/../lib' -Wl,-rpath-link='\$ORIGIN/../lib'";
+	fi
+
 	write_library leveldb "$LEVELDB_VERSION"
 	local leveldb_dir="./leveldb-$LEVELDB_VERSION"
 	if cant_use_cache "$leveldb_dir"; then
@@ -764,6 +770,10 @@ function build_leveldb {
 	make install >> "$DIR/install.log" 2>&1
 	cd ..
 	write_done
+
+	if [ "$LDORIGIN_MODIFY" != "no" ]; then
+		LDFLAGS="-Wl,-rpath='\$\$ORIGIN/../lib' -Wl,-rpath-link='\$\$ORIGIN/../lib'";
+	fi
 }
 
 function build_libpng {
@@ -875,6 +885,9 @@ function build_libxml2 {
 }
 
 function build_libzip {
+	if [ "$LDORIGIN_MODIFY" != "no" ]; then
+		LDFLAGS="-Wl,-rpath='\$ORIGIN/../lib' -Wl,-rpath-link='\$ORIGIN/../lib'";
+	fi
 	#libzip
 	if [ "$DO_STATIC" == "yes" ]; then
 		local CMAKE_LIBZIP_EXTRA_FLAGS="-DBUILD_SHARED_LIBS=OFF"
@@ -916,6 +929,10 @@ function build_libzip {
 	make install >> "$DIR/install.log" 2>&1
 	cd ..
 	write_done
+
+	if [ "$LDORIGIN_MODIFY" != "no" ]; then
+		LDFLAGS="-Wl,-rpath='\$\$ORIGIN/../lib' -Wl,-rpath-link='\$\$ORIGIN/../lib'";
+	fi
 }
 
 function build_sqlite3 {
@@ -954,6 +971,10 @@ function build_sqlite3 {
 }
 
 function build_libdeflate {
+	if [ "$LDORIGIN_MODIFY" != "no" ]; then
+		LDFLAGS="-Wl,-rpath='\$ORIGIN/../lib' -Wl,-rpath-link='\$ORIGIN/../lib'";
+	fi
+
 	write_library libdeflate "$LIBDEFLATE_VERSION"
 	local libdeflate_dir="./libdeflate-$LIBDEFLATE_VERSION"
 
@@ -986,6 +1007,10 @@ function build_libdeflate {
 	make install >> "$DIR/install.log" 2>&1
 	cd ..
 	write_done
+
+	if [ "$LDORIGIN_MODIFY" != "no" ]; then
+		LDFLAGS="-Wl,-rpath='\$\$ORIGIN/../lib' -Wl,-rpath-link='\$\$ORIGIN/../lib'";
+	fi
 }
 
 function build_zstd {
